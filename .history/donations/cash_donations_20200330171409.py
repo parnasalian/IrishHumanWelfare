@@ -3,5 +3,4 @@ class Cash_Donation:
         if mode == 'once':
             do something
         else:
-            choose number of months
-            
+            choose number of months 
