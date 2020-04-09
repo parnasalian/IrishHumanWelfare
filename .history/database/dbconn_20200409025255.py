@@ -7,4 +7,3 @@ class Database_connection:
         host='eu-cdbr-west-02.cleardb.net',
         port=3306,
         database='heroku_dffdac2c032f563')
-        return mydb
