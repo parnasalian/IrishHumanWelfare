@@ -11,8 +11,8 @@
 <body>
 
 <div class="container">
-<form action = "/get_donation_type" method = 'post'>
-  <button type="submit" class="btn btn-info" name = 'CashDonation' value = 'CashDonation'>CashDonation</button>
+<form action = "{{url_for('get_donation_type',userSelection = CashDonation)}}" method = 'POST'></form>
+  <button type="submit" class="btn btn-info" name = 'CashDonation' value = 'CashDonation'>Cash Donation</button>
   <button type="submit" class="btn btn-info">Food Donation</button>
   <button type="submit" class="btn btn-info">Clothes Donation</button>
 </form>  

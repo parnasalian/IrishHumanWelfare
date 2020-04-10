@@ -2,7 +2,7 @@ from flask import Flask, session, render_template, request, session, g, redirect
 import os, random
 import mysql.connector
 from database.dbconn import Database_connection
-from donation_factory.donation_factory import DonationFactory
+from donation_factory import donation_factory.DonationFactory()
 
 app = Flask(__name__)
 dbcon=Database_connection.dbconn()
@@ -52,11 +52,11 @@ class Login:
 
 
 class ChooseDonation:
-    @app.route('/get_donation_type', methods = ['POST','GET'])
+    @app.route('/get_donation_type', methods = ['POST'])
     def get_donation_type():
         if request.method == "POST":
-            userSelection = request.form['CashDonation']
-            print("Check",userSelection)
+            userSelection = request.args.get('user_selection')
+            print(userSelection)
         donation = DonationFactory.get_donation_type(userSelection)
 
         return donation.donationPeriod()

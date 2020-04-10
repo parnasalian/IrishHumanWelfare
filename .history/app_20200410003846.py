@@ -56,7 +56,7 @@ class ChooseDonation:
     def get_donation_type():
         if request.method == "POST":
             userSelection = request.form['CashDonation']
-            print("Check",userSelection)
+            print(userSelection)
         donation = DonationFactory.get_donation_type(userSelection)
 
         return donation.donationPeriod()

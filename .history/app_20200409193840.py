@@ -2,7 +2,6 @@ from flask import Flask, session, render_template, request, session, g, redirect
 import os, random
 import mysql.connector
 from database.dbconn import Database_connection
-from donation_factory.donation_factory import DonationFactory
 
 app = Flask(__name__)
 dbcon=Database_connection.dbconn()
@@ -17,6 +16,7 @@ class Session:
 
 
 class Login:
+    global dbcon
     @app.route("/login",methods = ['POST','GET'])
     def login():
         if g.user:
@@ -27,11 +27,10 @@ class Login:
     
     @app.route("/processLogin",methods = ['POST','GET'])
     def processLogin():
-        dbcon=Database_connection.dbconn()
         cur=dbcon.cursor()
         username_form  = request.form['username']
         password_form  = request.form['password'] 
-        cur.execute("SELECT COUNT(1) FROM user_info WHERE username = %s;", [username_form]) # CHECKS IF USERNAME EXSIST
+        cur.execute("SELECT COUNT(1) FROM user_info WHERE vist_name = %s;", [username_form]) # CHECKS IF USERNAME EXSIST
         if cur.fetchone()[0]:
             cur.execute("SELECT user_password FROM user_info WHERE username = %s;", [username_form]) # FETCH THE HASHED PASSWORD
             for row in cur.fetchall():
@@ -49,17 +48,6 @@ class Login:
         logger = logging.getLogger(__name__)   #instance of logger
         logger.info('Logout processed')
         return redirect(url_for('viewMovie'))
-
-
-class ChooseDonation:
-    @app.route('/get_donation_type', methods = ['POST','GET'])
-    def get_donation_type():
-        if request.method == "POST":
-            userSelection = request.form['CashDonation']
-            print("Check",userSelection)
-        donation = DonationFactory.get_donation_type(userSelection)
-
-        return donation.donationPeriod()
 
 
 class Register:
