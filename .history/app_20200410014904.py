@@ -25,22 +25,10 @@ class Login:
         else:
             return render_template("login.html")
     
-    def retrieveDonations():
-        dictionary = {}
-        dbcon=Database_connection.dbconn()
-        cur=dbcon.cursor()
-        cur.execute("SELECT * FROM DonationType") # FETCH THE HASHED PASSWORD
-        for row in cur.fetchall():
-            donation_type = row[1]
-            keyword = row[2]
-            dictionary = {**dictionary,**{donation_type:keyword}}
-        return dictionary
-    
     @app.route("/processLogin",methods = ['POST','GET'])
     def processLogin():
-        donationsDictionary = {}
-        donationsDictionary = Login.retrieveDonations()
-        print("Donation dictionary",donationsDictionary)
+        getDonationsDictionary = {}
+        getDonationsDictionary = retrieveDonations()
         dbcon=Database_connection.dbconn()
         cur=dbcon.cursor()
         username_form  = request.form['username']
@@ -52,12 +40,20 @@ class Login:
                 if password_form  == row[0]:
                     session['user'] = username_form
                     print("PASSWORD is correct...")
-                    return render_template("index.html",donationsDictionary = donationsDictionary)     
+                    return render_template("index.html")     
                 else:
                     return render_template("login.html")  
         return render_template("login.html")
     
-    
+    def retrieveDonations():
+        dictionary = {}
+        dbcon=Database_connection.dbconn()
+        cur=dbcon.cursor()
+        cur.execute("SELECT * FROM DonationType") # FETCH THE HASHED PASSWORD
+        for row in cur.fetchall():
+            donation_type = row[1]
+            keyword = row[2]
+            dictionary = {**dictionary,**{donation_type:keyword}}
 
     @app.route('/logout', methods = ['POST','GET'])
     def logout():
@@ -71,7 +67,7 @@ class ChooseDonation:
     @app.route('/get_donation_type', methods = ['POST','GET'])
     def get_donation_type():
         if request.method == "POST":
-            userSelection = request.args.get('user_selection')
+            userSelection = request.form['CashDonation']
             print("Check",userSelection)
         donation = DonationFactory.get_donation_type(userSelection)
 

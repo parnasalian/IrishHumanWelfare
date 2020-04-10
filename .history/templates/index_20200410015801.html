@@ -11,14 +11,11 @@
 <body>
 
 <div class="container">
-    {% for key,values in donationsDictionary.items() %}
-
-<form action = "{{url_for('get_donation_type',user_selection = values)}}" method = 'post'>
-    
-  <button type="submit" class="btn btn-info" name = '{{values}}' value = '{{key}}'>{{key}}</button>
-  
-</form> 
-{% endfor %} 
+<form action = "/get_donation_type" method = 'post'>
+    {% for key,values in donationsDictionary.items %}
+  <button type="submit" class="btn btn-info" name = '{{values.keyword}}' value = '{{key}}'>{{key}}</button>
+{% endfor %}
+</form>  
 </div>
 
 </body>

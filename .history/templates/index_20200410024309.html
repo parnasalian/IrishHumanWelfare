@@ -12,7 +12,7 @@
 
 <div class="container">
     {% for key,values in donationsDictionary.items() %}
-
+    <h3>{{values.keyword}}</h3>
 <form action = "{{url_for('get_donation_type',user_selection = values)}}" method = 'post'>
     
   <button type="submit" class="btn btn-info" name = '{{values}}' value = '{{key}}'>{{key}}</button>

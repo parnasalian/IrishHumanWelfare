@@ -70,9 +70,8 @@ class Login:
 class ChooseDonation:
     @app.route('/get_donation_type', methods = ['POST','GET'])
     def get_donation_type():
-        if request.method == "POST":
-            userSelection = request.args.get('user_selection')
-            print("Check",userSelection)
+        userSelection = request.args.get('user_selection')
+        print("Check",userSelection)
         donation = DonationFactory.get_donation_type(userSelection)
 
         return donation.donationPeriod()
