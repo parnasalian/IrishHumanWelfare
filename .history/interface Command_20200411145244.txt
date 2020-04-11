@@ -1,0 +1,55 @@
+interface Command 
+{ 
+    public void execute(); 
+} 
+  
+
+class Payment 
+{ 
+    public void credit() 
+    { 
+        System.out.println("bla"); 
+    } 
+    public void netbanking() 
+    { 
+        System.out.println("bla"); 
+    } 
+} 
+
+class Credit_card_payment implements Command 
+{ 
+    Payment payment; 
+  
+    public Credit_card_payment(Payment payment) 
+    { 
+       this.payment = payment; 
+    } 
+    public void execute() 
+    { 
+       payment.credit(); 
+    } 
+} 
+class Netbanking_payment implements Command 
+{ 
+    Payment payment; 
+    public Netbanking_payment(Payment payment;) 
+    { 
+        this.payment = payment; 
+    } 
+    public void execute() 
+    { 
+         payment.netbanking(); 
+    } 
+} 
+
+class RemoteControlTest 
+{ 
+    public static void main(String[] args) 
+    { 
+
+        payment = Payment(); 
+        // we can change command dynamically 
+        remote.setCommand(new
+                    LightOnCommand(light)); 
+     } 
+  } 

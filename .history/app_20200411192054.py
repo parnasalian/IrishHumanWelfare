@@ -3,7 +3,6 @@ import os, random
 import mysql.connector
 from database.dbconn import Database_connection
 from donation_factory.donation_factory import DonationFactory
-from cash_donation.cash_donation import Payments,CreditCardCommand,NetBankingCommand,Cash_Donation
 
 app = Flask(__name__)
 dbcon=Database_connection.dbconn()
@@ -103,7 +102,7 @@ class CashDonation:
         cashDonation.register("Netbanking", payViaNetBanking)
 
         # Execute the commands that are registered on the Invoker
-        return cashDonation.execute(payment_method)
+        cashDonation.execute(payment_method)
         
 
 class Register:
