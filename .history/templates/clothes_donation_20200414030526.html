@@ -69,11 +69,11 @@
                                         <div class="value">
                                             <div class="input-group">
                                                 <span style="width:50%;padding:1%;"> <select id = "loc" name = 'location' class = "form-control drops">
-                                                    
-                                                    {% for loc in clothes_dictionary.location %}
+                                                    {% for k,v in clothes_dictionary.items() %}
+                                                    {% for loc in v.location %}
                                                     <option>{{loc}}</option>
                                                     {% endfor %}
-                                                   
+                                                    {% endfor %}
                                                    </select></span>
                                             </div>
                                         </div>
@@ -83,11 +83,11 @@
                                         <div class="value">
                                             <div class="input-group">
                                                 <span style="width:50%;padding:1%;"> <select id = "cat" name = 'category' class = "form-control drops">
-                                                   
-                                                    {% for cat in clothes_dictionary.category %}
+                                                    {% for k,v in clothes_dictionary.items() %}
+                                                    {% for cat in v.category %}
                                                     <option>{{cat}}</option>
                                                     {% endfor %}
-                                                 
+                                                    {% endfor %}
                                                    </select></span>
                                             </div>
                                         </div>
@@ -97,11 +97,11 @@
                                         <div class="value">
                                             <div class="input-group">
                                                 <span style="width:50%;padding:1%;"> <select id = "mode" name = 'mode_' class = "form-control drops">
-                                                   
-                                                    {% for modes in clothes_dictionary.mode %}
-                                                    <option>{{modes}}</option>
+                                                    {% for k,v in clothes_dictionary.items() %}
+                                                    {% for modes in v.mode %}
+                                                    <option>{{cat}}</option>
                                                     {% endfor %}
-                                                   
+                                                    {% endfor %}
                                                    </select></span>
                                             </div>
                                         </div>

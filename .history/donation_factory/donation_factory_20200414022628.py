@@ -22,7 +22,6 @@ class ClothesDonation(IDonation):
         clothes_dictionary = {}
         facade = Facade()
         clothes_dictionary = facade.start_clothes()
-        print("Inside factory",clothes_dictionary)
         return render_template('clothes_donation.html',clothes_dictionary = clothes_dictionary)
 
 class DonationFactory():

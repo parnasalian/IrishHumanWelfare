@@ -69,11 +69,8 @@
                                         <div class="value">
                                             <div class="input-group">
                                                 <span style="width:50%;padding:1%;"> <select id = "loc" name = 'location' class = "form-control drops">
+                                                    <option>{{}}</option>
                                                     
-                                                    {% for loc in clothes_dictionary.location %}
-                                                    <option>{{loc}}</option>
-                                                    {% endfor %}
-                                                   
                                                    </select></span>
                                             </div>
                                         </div>
@@ -83,11 +80,8 @@
                                         <div class="value">
                                             <div class="input-group">
                                                 <span style="width:50%;padding:1%;"> <select id = "cat" name = 'category' class = "form-control drops">
-                                                   
-                                                    {% for cat in clothes_dictionary.category %}
-                                                    <option>{{cat}}</option>
-                                                    {% endfor %}
-                                                 
+                                                    <option>{{}}</option>
+                                                    
                                                    </select></span>
                                             </div>
                                         </div>
@@ -97,11 +91,8 @@
                                         <div class="value">
                                             <div class="input-group">
                                                 <span style="width:50%;padding:1%;"> <select id = "mode" name = 'mode_' class = "form-control drops">
-                                                   
-                                                    {% for modes in clothes_dictionary.mode %}
-                                                    <option>{{modes}}</option>
-                                                    {% endfor %}
-                                                   
+                                                    <option>{{}}</option>
+                                                    
                                                    </select></span>
                                             </div>
                                         </div>

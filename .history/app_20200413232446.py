@@ -97,7 +97,7 @@ class CashDonation:
         payViaCredit = CreditCardCommand(payment)
         payViaNetBanking = NetBankingCommand(payment)
 
-        # Register the commands with the invoker
+        # Register the commands with the invoker (Switch)
         cashDonation = Cash_Donation()
         cashDonation.register("Credit/Debit", payViaCredit)
         cashDonation.register("Netbanking", payViaNetBanking)
@@ -105,8 +105,6 @@ class CashDonation:
         # Execute the commands that are registered on the Invoker
         return cashDonation.execute(payment_method)
         
-
-
 
 class Register:
     @app.route("/register") 

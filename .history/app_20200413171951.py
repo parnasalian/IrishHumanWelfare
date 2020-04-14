@@ -4,9 +4,17 @@ import mysql.connector
 from database.dbconn import Database_connection
 from donation_factory.donation_factory import DonationFactory
 from cash_donation.cash_donation import Payments,CreditCardCommand,NetBankingCommand,Cash_Donation
+from database.db import initialize_db
+from database.models import User_Info 
 
 app = Flask(__name__)
 dbcon=Database_connection.dbconn()
+
+app.config['MONGODB_SETTINGS'] = {
+    'host': 'mongodb://localhost/irishhumanwelfare'
+}
+
+db = initialize_db(app)
 
 class Session:
     @app.before_request
@@ -97,7 +105,7 @@ class CashDonation:
         payViaCredit = CreditCardCommand(payment)
         payViaNetBanking = NetBankingCommand(payment)
 
-        # Register the commands with the invoker
+        # Register the commands with the invoker (Switch)
         cashDonation = Cash_Donation()
         cashDonation.register("Credit/Debit", payViaCredit)
         cashDonation.register("Netbanking", payViaNetBanking)
@@ -105,8 +113,6 @@ class CashDonation:
         # Execute the commands that are registered on the Invoker
         return cashDonation.execute(payment_method)
         
-
-
 
 class Register:
     @app.route("/register") 

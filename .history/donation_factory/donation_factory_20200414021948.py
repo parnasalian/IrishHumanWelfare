@@ -19,11 +19,9 @@ class FoodDonation(IDonation):
 
 class ClothesDonation(IDonation):
     def get_donation():
-        clothes_dictionary = {}
         facade = Facade()
-        clothes_dictionary = facade.start_clothes()
-        print("Inside factory",clothes_dictionary)
-        return render_template('clothes_donation.html',clothes_dictionary = clothes_dictionary)
+        facade.start_clothes()
+        return render_template('clothes_donation.html')
 
 class DonationFactory():
     def get_donation_type(donationType):

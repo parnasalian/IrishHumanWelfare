@@ -106,7 +106,8 @@ class CashDonation:
         return cashDonation.execute(payment_method)
         
 
-
+class ClothesDonation:
+    @app.route('/processClothesDonation')
 
 class Register:
     @app.route("/register") 
