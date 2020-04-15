@@ -21,9 +21,10 @@ class FoodDonation(IDonation):
         cur=dbcon.cursor()
         cur.execute("SELECT * FROM food_donation_types") # FETCH THE HASHED PASSWORD
         for row in cur.fetchall():
-            food_donation_type = row[0]
-            keyword = row[1]
+            food_donation_type = row[1]
+            keyword = row[2]
             dictionary = {**dictionary,**{food_donation_type:keyword}}
+        return dictionary
         return render_template('food_donation.html',dictionary = dictionary)
 
 class ClothesDonation(IDonation):
@@ -38,6 +39,6 @@ class DonationFactory():
     def get_donation_type(donationType):
         print("Donation",donationType)
         #donation_dictionary = {"donation_type":donationType}
-        return eval(donationType) 
+        return eval(donationType)
   
 

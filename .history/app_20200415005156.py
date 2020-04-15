@@ -4,7 +4,7 @@ import mysql.connector
 from database.dbconn import Database_connection
 from donation_factory.donation_factory import DonationFactory
 from cash_donation.cash_donation import Payments,CreditCardCommand,NetBankingCommand,Cash_Donation
-from food_donation.food_donation import *
+
 app = Flask(__name__)
 dbcon=Database_connection.dbconn()
 
@@ -83,11 +83,7 @@ class FoodDonation:
     def get_foodDonation_type():
         if request.method == "POST":
             foodDonationType = request.args.get('type')
-        print("User selected ",foodDonationType)
-        ftype = eval(foodDonationType)  #creating the instance of visitor class
-        food = Fooddonation()
-        return food.accept(ftype)
-
+            
 class CashDonation:
     @app.route('/processCashDonation', methods = ['POST','GET'])
     def processCashDonation():

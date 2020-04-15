@@ -13,7 +13,7 @@
 <div class="container">
     {% for key,values in dictionary.items() %}
 
-<form action = "{{url_for('get_foodDonation_type',type = values)}}" method = 'post'>
+<form action = "{{url_for('get_foodDonation_type',user_selection = values)}}" method = 'post'>
     
   <button type="submit" class="btn btn-info" name = '{{values}}' value = '{{key}}'>{{key}}</button>
   

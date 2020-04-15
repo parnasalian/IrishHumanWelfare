@@ -84,9 +84,8 @@ class FoodDonation:
         if request.method == "POST":
             foodDonationType = request.args.get('type')
         print("User selected ",foodDonationType)
-        ftype = eval(foodDonationType)  #creating the instance of visitor class
         food = Fooddonation()
-        return food.accept(ftype)
+        food.accept(eval(foodDonationType))
 
 class CashDonation:
     @app.route('/processCashDonation', methods = ['POST','GET'])

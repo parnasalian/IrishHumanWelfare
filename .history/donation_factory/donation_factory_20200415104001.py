@@ -24,6 +24,7 @@ class FoodDonation(IDonation):
             food_donation_type = row[0]
             keyword = row[1]
             dictionary = {**dictionary,**{food_donation_type:keyword}}
+        return dictionary
         return render_template('food_donation.html',dictionary = dictionary)
 
 class ClothesDonation(IDonation):
