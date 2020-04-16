@@ -25,12 +25,6 @@ class Login:
             dictionary = {**dictionary,**{donation_type:keyword}}
         return dictionary
     
-    @app.route("/back",methods = ['POST','GET'])
-    def back():
-        donationsDictionary = {}
-        donationsDictionary = Login.retrieveDonations()
-        return render_template("index.html",donationsDictionary = donationsDictionary)     
-    
     @app.route("/processLogin",methods = ['POST','GET'])
     def processLogin():
         donationsDictionary = {}
@@ -47,14 +41,10 @@ class Login:
                 if password_form  == row[0]:
                     session['user'] = username_form
                     print("PASSWORD is correct...")
-                    return render_template("index.html",donationsDictionary = donationsDictionary)     
+                    return redirect(url_for('indexPage',donationsDictionary = donationsDictionary)  )   
                 else:
                     return render_template("login.html")  
         return render_template("login.html")
-    
-    
-
-
 
 class ChooseDonation:
     @app.route('/get_donation_type', methods = ['POST','GET'])
@@ -134,7 +124,10 @@ class Register:
 class HomePage:
     @app.route("/index", methods = ['POST','GET'])
     def indexPage():
-        return render_template("index.html")
+        donationsDictionary = {}
+        donationsDictionary = request.args.get('donationsDictionary')
+        print("Dictionary is ",donationsDictionary)
+        return render_template("index.html",donationsDictionary = donationsDictionary)
 
 
 

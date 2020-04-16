@@ -8,11 +8,23 @@ from food_donation.food_donation import *
 app = Flask(__name__)
 dbcon=Database_connection.dbconn()
 
+class Session:
+    @app.before_request
+    def before_request():
+        g.user = None
+        if 'user' in session:
+            g.user = session['user']
+
+
 
 class Login:
     @app.route("/login",methods = ['POST','GET'])
     def login():
-        return render_template("login.html")
+        if g.user:
+            username_form = session['user']
+            return redirect(url_for('processLogin',username_form = username_form))
+        else:
+            return render_template("login.html")
     
     def retrieveDonations():
         dictionary = {}
@@ -24,12 +36,6 @@ class Login:
             keyword = row[2]
             dictionary = {**dictionary,**{donation_type:keyword}}
         return dictionary
-    
-    @app.route("/back",methods = ['POST','GET'])
-    def back():
-        donationsDictionary = {}
-        donationsDictionary = Login.retrieveDonations()
-        return render_template("index.html",donationsDictionary = donationsDictionary)     
     
     @app.route("/processLogin",methods = ['POST','GET'])
     def processLogin():
@@ -54,6 +60,12 @@ class Login:
     
     
 
+    @app.route('/logout', methods = ['POST','GET'])
+    def logout():
+        session.pop('user',None)
+        logger = logging.getLogger(__name__)   #instance of logger
+        logger.info('Logout processed')
+        return redirect(url_for('viewMovie'))
 
 
 class ChooseDonation:

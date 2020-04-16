@@ -11,20 +11,14 @@
 <body>
 
 <div class="container">
-    {% for key,values in dictionary.items() %}
+    {% for key,values in donationsDictionary.items() %}
 
-<form action = "{{url_for('get_foodDonation_type',type = values)}}" method = 'post'>
+<form action = "{{url_for('get_donation_type',user_selection = values)}}" method = 'post'>
     
   <button type="submit" class="btn btn-info" name = '{{values}}' value = '{{key}}'>{{key}}</button>
   
 </form> 
 {% endfor %} 
-<br>
-                    <form method="POST" action = "/back">
-                    <div>
-                        <button class="btn btn--radius-2 btn--red" type="submit">Back</button>
-                    </div>
-                </form>
 </div>
 
 </body>

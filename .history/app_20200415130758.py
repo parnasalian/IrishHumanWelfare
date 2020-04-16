@@ -25,12 +25,6 @@ class Login:
             dictionary = {**dictionary,**{donation_type:keyword}}
         return dictionary
     
-    @app.route("/back",methods = ['POST','GET'])
-    def back():
-        donationsDictionary = {}
-        donationsDictionary = Login.retrieveDonations()
-        return render_template("index.html",donationsDictionary = donationsDictionary)     
-    
     @app.route("/processLogin",methods = ['POST','GET'])
     def processLogin():
         donationsDictionary = {}
