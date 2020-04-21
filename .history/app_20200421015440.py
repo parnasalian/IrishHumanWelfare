@@ -18,10 +18,19 @@ class Login:
     @app.route("/back",methods = ['POST','GET'])
     def back():
         donationsDictionary = {}
-        donationsDictionary = DataBase.retrieveDonations()
+        donationsDictionary = Login.retrieveDonations()
         return render_template("index.html",donationsDictionary = donationsDictionary)
     
-    
+    def retrieveDonations():
+        dictionary = {}
+        dbcon=Database_connection.dbconn()
+        cur=dbcon.cursor()
+        cur.execute("SELECT * FROM DonationType") # FETCH THE HASHED PASSWORD
+        for row in cur.fetchall():
+            donation_type = row[1]
+            keyword = row[2]
+            dictionary = {**dictionary,**{donation_type:keyword}}
+        return dictionary
     
     @app.route("/processLogin",methods = ['POST','GET'])
     def processLogin():
@@ -29,7 +38,7 @@ class Login:
             username_form  = request.form['username']
             password_form  = request.form['password']
         login = UserChoice()
-        return login.optForLogin(username_form,password_form)
+        login.optForLogin(username_form,password_form)
         
     
     
