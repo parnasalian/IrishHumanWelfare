@@ -18,6 +18,6 @@ class DataBase:
         self.cur.execute("SELECT COUNT(1) FROM user_info WHERE username = %s;", [username_form]) # CHECKS IF USERNAME EXSIST
         if self.cur.fetchone()[0]:
             self.cur.execute("SELECT user_password FROM user_info WHERE username = %s;", [username_form]) # FETCH THE HASHED PASSWORD
-            for row in self.cur.fetchall():
+            for row in cur.fetchall():
                 dbPassword = row[0]
         return dbPassword

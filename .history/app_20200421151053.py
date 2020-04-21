@@ -28,8 +28,8 @@ class Login:
         if request.method == "POST":
             username_form  = request.form['username']
             password_form  = request.form['password']
-        login = UserChoice()    # Instance of Event Channel
-        return login.optForLogin(username_form,password_form)  #Passing the credentials along with the event to the event channel.
+        login = UserChoice()
+        return login.optForLogin(username_form,password_form)
         
     
     

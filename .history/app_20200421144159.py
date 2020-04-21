@@ -6,7 +6,7 @@ from donation_factory.donation_factory import DonationFactory
 from cash_donation.cash_donation import Payments,CreditCardCommand,NetBankingCommand,Cash_Donation
 from food_donation.food_donation import *
 from eventdriven.UserAuthentication import *
-from dao.dao import *
+from dao.DataBase import *
 app = Flask(__name__)
 dbcon=Database_connection.dbconn()
 
@@ -22,14 +22,15 @@ class Login:
         donationsDictionary = DataBase.retrieveDonations()
         return render_template("index.html",donationsDictionary = donationsDictionary)
     
-
-    @app.route("/processLogin",methods = ['POST','GET'])    #Event producer
+    
+    
+    @app.route("/processLogin",methods = ['POST','GET'])
     def processLogin():
         if request.method == "POST":
             username_form  = request.form['username']
             password_form  = request.form['password']
-        login = UserChoice()    # Instance of Event Channel
-        return login.optForLogin(username_form,password_form)  #Passing the credentials along with the event to the event channel.
+        login = UserChoice()
+        return login.optForLogin(username_form,password_form)
         
     
     

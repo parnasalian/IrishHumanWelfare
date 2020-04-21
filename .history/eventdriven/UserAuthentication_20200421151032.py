@@ -18,7 +18,7 @@ class EventProcessor(object):
 
 class UserChoice:   #Acts as a event channel
     def __init__(self): 
-        self.eventProcessor = EventProcessor() #Initiated our processor for processing data for the event.
+        self.eventProcessor = EventProcessor()
     def optForLogin(self,username_form,password_form):
         return self.eventProcessor.login(username_form,password_form)
     
