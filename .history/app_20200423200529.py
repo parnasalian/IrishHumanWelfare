@@ -8,8 +8,6 @@ from food_donation.food_donation import *
 from eventdriven.UserAuthentication import *
 from dao.dao import *
 from interceptorPattern.concreteInterceptor import *
-from interceptorPattern.dispatcher import *
-from interceptorPattern.concreteFramework import *
 app = Flask(__name__)
 dbcon=Database_connection.dbconn()
 
@@ -64,14 +62,11 @@ class FoodDonation:
     
     @app.route('/processPaymentForFood', methods = ['POST','GET'])
     def processPaymentForFood():
-        if request.method == 'POST':
-            cardNumber = request.form['PhoneNumber']
-        print(cardNumber)
         concreteinterceptor = ConcreteInterceptor()
         dispatcher = Dispatcher()
-        dispatcher.registerInterceptors(concreteinterceptor)
+        dispatcher.register(concreteinterceptor)
         concreteframework = ConcreteFramework()
-        return concreteframework.notifyDispatcher(cardNumber)
+        concreteframework.somemethod(someevent)
 
 class CashDonation:
     @app.route('/processCashDonation', methods = ['POST','GET'])

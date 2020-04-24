@@ -64,14 +64,11 @@ class FoodDonation:
     
     @app.route('/processPaymentForFood', methods = ['POST','GET'])
     def processPaymentForFood():
-        if request.method == 'POST':
-            cardNumber = request.form['PhoneNumber']
-        print(cardNumber)
         concreteinterceptor = ConcreteInterceptor()
         dispatcher = Dispatcher()
-        dispatcher.registerInterceptors(concreteinterceptor)
+        dispatcher.register(concreteinterceptor)
         concreteframework = ConcreteFramework()
-        return concreteframework.notifyDispatcher(cardNumber)
+        concreteframework.somemethod(someevent)
 
 class CashDonation:
     @app.route('/processCashDonation', methods = ['POST','GET'])

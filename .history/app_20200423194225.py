@@ -7,9 +7,6 @@ from cash_donation.cash_donation import Payments,CreditCardCommand,NetBankingCom
 from food_donation.food_donation import *
 from eventdriven.UserAuthentication import *
 from dao.dao import *
-from interceptorPattern.concreteInterceptor import *
-from interceptorPattern.dispatcher import *
-from interceptorPattern.concreteFramework import *
 app = Flask(__name__)
 dbcon=Database_connection.dbconn()
 
@@ -49,7 +46,11 @@ class ChooseDonation:
 
         return donation.get_donation()
 
-    
+    @app.route('/processPaymentForFood', methods = ['POST','GET'])
+    def processPaymentForFood():
+        concreteinterceptor = ConcreteInterceptor()
+        dispatcher = Dispatcher()
+        dispatcher.register(concreteinterceptor)
 
 
 class FoodDonation:
@@ -61,17 +62,6 @@ class FoodDonation:
         ftype = eval(foodDonationType)  #creating the instance of visitor class
         food = Fooddonation()
         return food.accept(ftype)
-    
-    @app.route('/processPaymentForFood', methods = ['POST','GET'])
-    def processPaymentForFood():
-        if request.method == 'POST':
-            cardNumber = request.form['PhoneNumber']
-        print(cardNumber)
-        concreteinterceptor = ConcreteInterceptor()
-        dispatcher = Dispatcher()
-        dispatcher.registerInterceptors(concreteinterceptor)
-        concreteframework = ConcreteFramework()
-        return concreteframework.notifyDispatcher(cardNumber)
 
 class CashDonation:
     @app.route('/processCashDonation', methods = ['POST','GET'])

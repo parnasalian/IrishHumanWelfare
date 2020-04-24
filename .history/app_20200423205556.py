@@ -71,7 +71,7 @@ class FoodDonation:
         dispatcher = Dispatcher()
         dispatcher.registerInterceptors(concreteinterceptor)
         concreteframework = ConcreteFramework()
-        return concreteframework.notifyDispatcher(cardNumber)
+        concreteframework.notifyDispatcher(cardNumber)
 
 class CashDonation:
     @app.route('/processCashDonation', methods = ['POST','GET'])
