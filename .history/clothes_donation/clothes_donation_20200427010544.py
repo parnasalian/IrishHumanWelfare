@@ -10,13 +10,23 @@ class place:
 class category:
     def getcategory(self):
         categories = []
-        categories = DataBase.getCategories()
+        dbcon=Database_connection.dbconn()
+        cur=dbcon.cursor()
+        cur.execute("SELECT * FROM clothes_category") 
+        for row in cur.fetchall():
+            categories.append(row[1])
+        print(categories)
         return categories
 
 class mode:
     def getmode(self): 
         mode = []
-        mode = DataBase.getModes()
+        dbcon=Database_connection.dbconn()
+        cur=dbcon.cursor()
+        cur.execute("SELECT * FROM mode_of_transport") 
+        for row in cur.fetchall():
+            mode.append(row[1])
+        print(mode)
         return mode
 
 # Facade

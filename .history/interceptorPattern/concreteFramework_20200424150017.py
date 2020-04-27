@@ -3,10 +3,10 @@
 from interceptorPattern.contextObject import *
 from interceptorPattern.dispatcher import Dispatcher
 class ConcreteFramework():
-    co = None
     def processtransaction(self,cardNumber):
-        self.co = ContextObject(cardNumber)
+        co = ContextObject(cardNumber)
 
     def notifyDispatcher(self):
+        co = ContextObject()
         dispatcher = Dispatcher()
-        return dispatcher.dispatch(self.co)
+        return dispatcher.dispatch(co)

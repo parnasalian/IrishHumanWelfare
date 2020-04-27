@@ -51,11 +51,3 @@ class DataBase:
             for row in self.cur.fetchall():
                 dbPassword = row[0]
         return dbPassword
-
-    def getFoodDonationType():
-        self.cur.execute("SELECT * FROM food_donation_types") 
-        for row in self.cur.fetchall():
-            food_donation_type = row[0]
-            keyword = row[1]
-            dictionary = {**dictionary,**{food_donation_type:keyword}}
-        return dictionary

@@ -1,4 +1,5 @@
 #Triggers concrete interceptors
+
 class Dispatcher:
     interceptorList = []
     def _init_(self):
@@ -10,6 +11,6 @@ class Dispatcher:
         print(self.interceptorList)
 
 
-    def dispatch(self,contextobject): #Dispatches interceptor method when event occurs
+    def dispatch(self,cardNumber): #Dispatches interceptor method when event occurs
         for interceptor in self.interceptorList:
-            return interceptor.creditCardValidation(contextobject)
+            return interceptor.creditCardValidation(cardNumber)

@@ -18,7 +18,7 @@ class CashDonation(IDonation):
 class FoodDonation(IDonation):
     def get_donation():
         dictionary = {}
-        dictionary = DataBase.getFoodDonationType()
+        dictionary = DataBase
         return render_template('food_donation.html',dictionary = dictionary)
 
 class ClothesDonation(IDonation):

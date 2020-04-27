@@ -1,4 +1,5 @@
 #Triggers concrete interceptors
+
 class Dispatcher:
     interceptorList = []
     def _init_(self):

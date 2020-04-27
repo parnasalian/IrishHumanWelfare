@@ -35,6 +35,10 @@ class Login:
         return login.optForLogin(username_form,password_form)  #Passing the credentials along with the event to the event channel.
         
     
+    
+
+
+
 class ChooseDonation:
     @app.route('/get_donation_type', methods = ['POST','GET'])
     def get_donation_type():

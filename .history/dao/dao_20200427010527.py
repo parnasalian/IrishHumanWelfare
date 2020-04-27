@@ -24,25 +24,10 @@ class DataBase:
         return dictionary
 
     def getLocations(self):
-        locations = []
         self.cur.execute("SELECT * FROM donation_location") 
         for row in self.cur.fetchall():
             locations.append(row[1])
         return locations
-
-    def getCategories():
-        categories = []
-        self.cur.execute("SELECT * FROM clothes_category") 
-        for row in self.cur.fetchall():
-            categories.append(row[1])
-        return categories
-    
-    def getModes():
-        mode = []
-        self.cur.execute("SELECT * FROM mode_of_transport") 
-        for row in self.cur.fetchall():
-            mode.append(row[1])
-        return mode
     
     def getPasswordForLogin(self,username_form):
         self.cur.execute("SELECT COUNT(1) FROM user_info WHERE username = %s;", [username_form]) # CHECKS IF USERNAME EXSIST
@@ -51,11 +36,3 @@ class DataBase:
             for row in self.cur.fetchall():
                 dbPassword = row[0]
         return dbPassword
-
-    def getFoodDonationType():
-        self.cur.execute("SELECT * FROM food_donation_types") 
-        for row in self.cur.fetchall():
-            food_donation_type = row[0]
-            keyword = row[1]
-            dictionary = {**dictionary,**{food_donation_type:keyword}}
-        return dictionary

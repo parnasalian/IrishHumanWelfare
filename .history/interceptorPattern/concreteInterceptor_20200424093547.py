@@ -2,8 +2,6 @@
 from interceptorPattern.interceptor import *
 from flask import render_template
 class ConcreteInterceptor(Interceptor):
-    def creditCardValidation(self,contextobject):
+    def creditCardValidation(self,cardNumber):
         #Some processing to be done
-        cardNumber = contextobject.getCardNumber()
-        print("Card Number :", cardNumber)
         return render_template('success.html')

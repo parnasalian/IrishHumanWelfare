@@ -35,6 +35,10 @@ class Login:
         return login.optForLogin(username_form,password_form)  #Passing the credentials along with the event to the event channel.
         
     
+    
+
+
+
 class ChooseDonation:
     @app.route('/get_donation_type', methods = ['POST','GET'])
     def get_donation_type():
@@ -67,8 +71,7 @@ class FoodDonation:
         dispatcher = Dispatcher()
         dispatcher.registerInterceptors(concreteinterceptor)
         concreteframework = ConcreteFramework()
-        concreteframework.processtransaction(cardNumber)
-        return concreteframework.notifyDispatcher()
+        return concreteframework.notifyDispatcher(cardNumber)
 
 class CashDonation:
     @app.route('/processCashDonation', methods = ['POST','GET'])
