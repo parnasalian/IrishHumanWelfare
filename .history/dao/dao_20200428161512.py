@@ -45,25 +45,20 @@ class DataBase:
         return mode
     
     def getPasswordForLogin(self,username_form):
-        user_dictionary = {}
         self.cur.execute("SELECT COUNT(1) FROM user_info WHERE username = %s;", [username_form]) # CHECKS IF USERNAME EXSIST
         if self.cur.fetchone()[0]:
-            self.cur.execute("SELECT * FROM user_info WHERE username = %s;", [username_form]) # FETCH THE HASHED PASSWORD
+            self.cur.execute("SELECT user_password FROM user_info WHERE username = %s;", [username_form]) # FETCH THE HASHED PASSWORD
             for row in self.cur.fetchall():
-                username = row[0]
-                email = row[1]
-                phonenumber = row[2]
-                dbPassword = row[3]
-                address = row[4]
-        user_dictionary = {'user_name':username,'user_email':email,'user_phnumber':phonenumber,'password':dbPassword,'user_address':address}
-        return user_dictionary
+                dbPassword = row[0]
+        return dbPassword
 
-    def insertUserDataInDB(self,userdetails_dictionary):
+    def insertUserDataInDB(userdetails_dictionary):
         query = "INSERT INTO user_info(username,email,phone,user_password,address) VALUES(%s,%s,%s,%s,%s)"
-        args = (userdetails_dictionary['name'], userdetails_dictionary['email'], userdetails_dictionary['phonenumber'], userdetails_dictionary['password'], userdetails_dictionary['address'])
+        for k,v in userdetails_dictionary.items():
+            args = (v.name, v.email,  v.password, v.address, v.phonenumber)
         self.cur.execute(query,args)
         self.dbcon.commit()
-        pass
+        print("Row inserted...")
 
     def getFoodDonationType():
         self.cur.execute("SELECT * FROM food_donation_types") 

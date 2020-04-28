@@ -49,6 +49,10 @@ class Register:
             custPassword = request.form['Password']
             custAddress = request.form['Address']
             custPhoneNumber = request.form['PhoneNumber']
+        session['username'] = custName
+        session['email'] = custEmail
+        session['phonenumber'] = custPhoneNumber
+        session['address'] = custAddress
         userDetailsDictionary = {'name':custName,'email':custEmail,'password':custPassword,'address':custAddress,'phonenumber':custPhoneNumber}
         register = UserChoice()
         return register.optForRegister(userDetailsDictionary)
@@ -95,8 +99,9 @@ class CashDonation:
     @app.route('/processCashDonation', methods = ['POST','GET'])
     def processCashDonation():
         if request.method == "POST":
-            donar = session['username']
-            print("Donated by",donar)
+            donar_name = request.form['name']
+            donar_address = request.form['address']
+            donar_phone_number = request.form['PhoneNumber']
             donation_amount = request.form['amount']
             donation_frequency = request.form['frequency']
             payment_method = request.form['paymentmethod']

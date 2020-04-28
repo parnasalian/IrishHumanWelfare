@@ -16,7 +16,6 @@ class EventProcessor(object):
             session['email'] = user_dictionary['user_email']
             session['phonenumber'] = user_dictionary['user_phnumber']
             session['address'] = user_dictionary['user_address']
-            print("Session : ",session)
             return render_template("index.html",donationsDictionary = donationsDictionary)     
         else:
             return render_template("login.html")  

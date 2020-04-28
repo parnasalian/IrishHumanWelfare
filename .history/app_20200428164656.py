@@ -95,8 +95,9 @@ class CashDonation:
     @app.route('/processCashDonation', methods = ['POST','GET'])
     def processCashDonation():
         if request.method == "POST":
-            donar = session['username']
-            print("Donated by",donar)
+            donar_name = request.form['name']
+            donar_address = request.form['address']
+            donar_phone_number = request.form['PhoneNumber']
             donation_amount = request.form['amount']
             donation_frequency = request.form['frequency']
             payment_method = request.form['paymentmethod']
@@ -117,11 +118,16 @@ class CashDonation:
         # Execute the commands that are registered on the Invoker
         return cashDonation.execute(payment_method)
         
+
+
+
+
       
 class HomePage:
     @app.route("/index", methods = ['POST','GET'])
     def indexPage():
         return render_template("index.html")
+
 
 
 if __name__ == "__main__":

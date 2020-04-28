@@ -16,14 +16,15 @@ class EventProcessor(object):
             session['email'] = user_dictionary['user_email']
             session['phonenumber'] = user_dictionary['user_phnumber']
             session['address'] = user_dictionary['user_address']
-            print("Session : ",session)
             return render_template("index.html",donationsDictionary = donationsDictionary)     
         else:
             return render_template("login.html")  
 
     def register(self,userdetails_dictionary):
         self.db.insertUserDataInDB(userdetails_dictionary)
-        return render_template("login.html")
+        donationsDictionary = {}
+        donationsDictionary = self.db.retrieveDonations()
+        return render_template("index.html",donationsDictionary = donationsDictionary)
         
 
 class UserChoice:   #Acts as a event channel

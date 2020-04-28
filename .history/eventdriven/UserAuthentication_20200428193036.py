@@ -1,7 +1,7 @@
 from app import Login
 from database.dbconn import Database_connection
 from dao.dao import *
-from flask import render_template, redirect, url_for,session
+from flask import render_template, redirect, url_for
 class EventProcessor(object):
     def __init__(self):
         self.db = DataBase()
@@ -16,14 +16,15 @@ class EventProcessor(object):
             session['email'] = user_dictionary['user_email']
             session['phonenumber'] = user_dictionary['user_phnumber']
             session['address'] = user_dictionary['user_address']
-            print("Session : ",session)
             return render_template("index.html",donationsDictionary = donationsDictionary)     
         else:
             return render_template("login.html")  
 
     def register(self,userdetails_dictionary):
         self.db.insertUserDataInDB(userdetails_dictionary)
-        return render_template("login.html")
+        donationsDictionary = {}
+        donationsDictionary = self.db.retrieveDonations()
+        return render_template("index.html",donationsDictionary = donationsDictionary)
         
 
 class UserChoice:   #Acts as a event channel

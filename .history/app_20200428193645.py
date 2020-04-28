@@ -95,8 +95,7 @@ class CashDonation:
     @app.route('/processCashDonation', methods = ['POST','GET'])
     def processCashDonation():
         if request.method == "POST":
-            donar = session['username']
-            print("Donated by",donar)
+            donar = session['user_name']
             donation_amount = request.form['amount']
             donation_frequency = request.form['frequency']
             payment_method = request.form['paymentmethod']
