@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+    .drops{
+                    width : 20%
+            }
+    </style>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Colorlib Templates">
+    <meta name="author" content="Colorlib">
+    <meta name="keywords" content="Colorlib Templates">
+
+    <!-- Title Page-->
+    <title>Donation</title>
+
+    <!-- Icons font CSS-->
+    <link href="../vendor_register/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
+    <link href="../vendor_register/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <!-- Font special for pages-->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
+
+    <!-- Vendor CSS-->
+    <link href="../vendor_register/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="../vendor_register/datepicker/daterangepicker.css" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link href="../static/dist/css/main.css" rel="stylesheet" media="all">
+</head>
+
+<body>
+    <div class="page-wrapper p-t-45 p-b-50">
+        <div class="wrapper wrapper--w790">
+            <div class="card card-5">
+                <div class="card-heading">
+                    <h2 class="title">Donate Home Food</h2>
+                </div>
+                <div class="card-body">
+                    <form method="POST" action = "/processFoodDonation">
+                        <div class="form-row">
+                            <div class="name">Select Food Item</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <span style="width:50%;padding:1%;"> <select name = 'grain' class = "form-control drops">
+                                        
+                                        {% for grain in grainsList %}
+                                        <option>{{grain}}</option>
+                                        {% endfor %}
+                                       
+                                       </select></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="name">Enter Quantity in KG</div>
+                            <div class="value">
+                                <div class="input-group">
+                                    <input class="input--style-5" type="text" name="quantity" autocomplete="off" >
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                                    <div class="form-row">
+                                        <div class="name">Location</div>
+                                        <div class="value">
+                                            <div class="input-group">
+                                                <span style="width:50%;padding:1%;"> <select id = "loc" name = 'location' class = "form-control drops">
+                                                    
+                                                    {% for loc in dropdown_dictionary.location %}
+                                                    <option>{{loc}}</option>
+                                                    {% endfor %}
+                                                   
+                                                   </select></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="name">Category</div>
+                                        <div class="value">
+                                            <div class="input-group">
+                                                <span style="width:50%;padding:1%;"> <select id = "cat" name = 'category' class = "form-control drops">
+                                                   
+                                                    {% for cat in dropdown_dictionary.category %}
+                                                    <option>{{cat}}</option>
+                                                    {% endfor %}
+                                                 
+                                                   </select></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="name">Mode</div>
+                                        <div class="value">
+                                            <div class="input-group">
+                                                <span style="width:50%;padding:1%;"> <select id = "mode" name = 'mode_' class = "form-control drops">
+                                                   
+                                                    {% for modes in dropdown_dictionary.mode %}
+                                                    <option>{{modes}}</option>
+                                                    {% endfor %}
+                                                   
+                                                   </select></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Donate</button>
+                        </div>
+                    </form>
+                    <br>
+                    <form method="POST" action = "/back">
+                        <div>
+                            <button class="btn btn--radius-2 btn--red" type="submit">Back</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jquery JS-->
+    <script src="../vendor_register/jquery/jquery.min.js"></script>
+    <!-- Vendor JS-->
+    <script src="../vendor_register/select2/select2.min.js"></script>
+    <script src="../vendor_register/datepicker/moment.min.js"></script>
+    <script src="../vendor_register/datepicker/daterangepicker.js"></script>
+
+    <!-- Main JS-->
+    <script src="../static/dist/js/global.js"></script>
+
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+
+</html>
+<!-- end document-->
