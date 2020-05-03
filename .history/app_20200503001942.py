@@ -5,14 +5,14 @@ from database.dbconn import Database_connection
 from donations.donations import Donations
 from money_donation.money_donation import Payments,CreditCardCommand,NetBankingCommand,Money_Donation
 from food_donation.food_donation import *
-from UserAuthentication.UserAuthentication import *
+from eventdriven.UserAuthentication import *
 from dao.dao import *
 from paymentAuthentication.concreteInterceptor import *
 from paymentAuthentication.dispatcher import *
 from paymentAuthentication.concreteFramework import *
 from paymentAuthentication.Interceptor_contextObject import *
 from food_donation.foodItems import *
-from food_donation.partyLeftOver import *
+from pipe_filter.partyLeftOver import *
 app = Flask(__name__)
 dbcon=DataBase.dbconn()
 
@@ -130,23 +130,11 @@ class FoodDonation:
             location = request.form['location']
             category = request.form['category']
             mode = request.form['mode_']
-        leftovers = LeftOver()
+        leftovers = Fooddonate()
         leftovers.location(location)
         leftovers.category(category)
         leftovers.mode(mode)
         return render_template("success.html")
-
-class ClothesDonation:
-    @app.route("/processClothesDonation",methods = ['POST','GET'])
-    def processClothesDonation():
-        if request.method == "POST":
-            location = request.form['location']
-            category = request.form['category']
-            mode = request.form['mode_']
-        db = DataBase()
-        db.donateClothesDetails(location,category,mode)
-        return render_template("success.html")
-
 class MoneyDonation:
     @app.route('/processMoneyDonation', methods = ['POST','GET'])
     def processMoneyDonation():

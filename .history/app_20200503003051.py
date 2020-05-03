@@ -135,18 +135,6 @@ class FoodDonation:
         leftovers.category(category)
         leftovers.mode(mode)
         return render_template("success.html")
-
-class ClothesDonation:
-    @app.route("/processClothesDonation",methods = ['POST','GET'])
-    def processClothesDonation():
-        if request.method == "POST":
-            location = request.form['location']
-            category = request.form['category']
-            mode = request.form['mode_']
-        db = DataBase()
-        db.donateClothesDetails(location,category,mode)
-        return render_template("success.html")
-
 class MoneyDonation:
     @app.route('/processMoneyDonation', methods = ['POST','GET'])
     def processMoneyDonation():
