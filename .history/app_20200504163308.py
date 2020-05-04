@@ -49,41 +49,41 @@ class Register():
 
     @app.route("/processRegistration",methods = ['POST','GET'])
     def processRegistration():
-        user_details_dictionary = {}
+        userDetailsDictionary = {}
         if request.method == "POST":
             print("Enter!!")
-            cust_name = request.form['Username']
+            custName = request.form['Username']
             print(custName)
-            cust_email = request.form['Email']
-            cust_password = request.form['Password']
-            cust_address = request.form['Address']
-            cust_phoneNumber = request.form['PhoneNumber']
-        user_details_dictionary = {'name':cust_name,'email':cust_email,'password':cust_password,'address':cust_address,'phonenumber':cust_phoneNumber}
+            custEmail = request.form['Email']
+            custPassword = request.form['Password']
+            custAddress = request.form['Address']
+            custPhoneNumber = request.form['PhoneNumber']
+        userDetailsDictionary = {'name':custName,'email':custEmail,'password':custPassword,'address':custAddress,'phonenumber':custPhoneNumber}
         register = UserChoice()
-        return register.opt_for_register(user_details_dictionary)
+        return register.opt_for_register(userDetailsDictionary)
         
         
         
   
-class ChooseDonation(): #Vishal
+class ChooseDonation():
     @app.route('/get_donations', methods = ['POST','GET'])
     def get_donations():
         if request.method == "POST":
-            user_selection = request.args.get('user_selection')
-            print("Check",user_selection)
+            userSelection = request.args.get('user_selection')
+            print("Check",userSelection)
         df = Donations()
-        donation = df.get_donation_type(user_selection)
+        donation = df.get_donation_type(userSelection)
         print("here",donation)
         don = donation()
         return don.get_donation()
 
 class FoodDonation():
-    @app.route('/get_foodDonation_type', methods = ['POST','GET']) #Parna
+    @app.route('/get_foodDonation_type', methods = ['POST','GET'])
     def get_foodDonation_type():
         if request.method == "POST":
-            food_donation_type = request.args.get('type')
-        print("User selected ",food_donation_type)
-        object = globals()[food_donation_type]
+            foodDonationType = request.args.get('type')
+        print("User selected ",foodDonationType)
+        object = globals()[foodDonationType]
         food = Fooddonation()
         return food.accept(object)
 
@@ -98,35 +98,34 @@ class FoodDonation():
         return user.agent(requests) 
 
 
-    @app.route('/getCreditCardPaymentPage',methods = ["POST","GET"]) #Parna
+    @app.route('/getCreditCardPaymentPage',methods = ["POST","GET"])
     def getCreditCardPaymentPage():
         return render_template('creditCardPayment.html')
     
-    @app.route('/processPaymentForFood', methods = ['POST','GET']) #Parna
+    @app.route('/processPaymentForFood', methods = ['POST','GET'])
     def processPaymentForFood():
         if request.method == 'POST':
-            card_number = request.form['cardnumber']
-        print(card_number)
+            cardNumber = request.form['cardnumber']
+        print(cardNumber)
         concreteinterceptor = ConcreteInterceptor2()
         dispatcher = Dispatcher2()
         dispatcher.registerInterceptors(concreteinterceptor)
         concreteframework = ConcreteFramework2()
-        concreteframework.processtransaction(card_number)
+        concreteframework.processtransaction(cardNumber)
         return concreteframework.notifyDispatcher()
 
-    @app.route('/processFoodDonation',methods = ['POST','GET'])  #RaghuParna
+    @app.route('/processFoodDonation',methods = ['POST','GET'])
     def processFoodDonation():
         if request.method == "POST":
-            food_item = request.form['item']
+            foodItem = request.form['item']
             quantity = request.form['quantity']
             location = request.form['location']
             mode = request.form['mode_']
         db = DataBase()
-        db.donateFoodDetails(food_item,quantity,location,mode)
-        a = "success.html"
-        return render_template(a)
+        db.donateFoodDetails(foodItem,quantity,location,mode)
+        return render_template("success.html")
     
-    @app.route('/processPartyLeftover', methods = ['POST','GET']) #Tushar
+    @app.route('/processPartyLeftover', methods = ['POST','GET'])
     def processPartyLeftover():
         if request.method == "POST":
             location = request.form['location']
@@ -138,7 +137,7 @@ class FoodDonation():
         leftovers.mode(mode)
         return render_template("success.html")
 
-class ClothesDonation():  #Tushar
+class ClothesDonation():
     @app.route("/processClothesDonation",methods = ['POST','GET'])
     def processClothesDonation():
         if request.method == "POST":
@@ -162,16 +161,16 @@ class MoneyDonation():
         payment = Payments()
 
         # Create Commands
-        pay_via_credit = CreditCardCommand(payment)
-        pay_via_net_banking = NetBankingCommand(payment)
+        payViaCredit = CreditCardCommand(payment)
+        payViaNetBanking = NetBankingCommand(payment)
 
         # Register the commands with the invoker
-        money_donation = Money_Donation()
-        moneyDonation.register("Credit/Debit", pay_via_credit)
-        moneyDonation.register("Netbanking", pay_via_net_banking)
+        moneyDonation = Money_Donation()
+        moneyDonation.register("Credit/Debit", payViaCredit)
+        moneyDonation.register("Netbanking", payViaNetBanking)
 
         # Execute the commands that are registered on the Invoker
-        return money_donation.execute(payment_method)
+        return moneyDonation.execute(payment_method)
     
     @app.route('/completeMoneyDonation',methods = ['POST','GET'])
     def completeMoneyDonation():

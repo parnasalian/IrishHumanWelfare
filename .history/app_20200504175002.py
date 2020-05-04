@@ -81,9 +81,9 @@ class FoodDonation():
     @app.route('/get_foodDonation_type', methods = ['POST','GET']) #Parna
     def get_foodDonation_type():
         if request.method == "POST":
-            food_donation_type = request.args.get('type')
-        print("User selected ",food_donation_type)
-        object = globals()[food_donation_type]
+            foodDonationType = request.args.get('type')
+        print("User selected ",foodDonationType)
+        object = globals()[foodDonationType]
         food = Fooddonation()
         return food.accept(object)
 
@@ -105,26 +105,25 @@ class FoodDonation():
     @app.route('/processPaymentForFood', methods = ['POST','GET']) #Parna
     def processPaymentForFood():
         if request.method == 'POST':
-            card_number = request.form['cardnumber']
-        print(card_number)
+            cardNumber = request.form['cardnumber']
+        print(cardNumber)
         concreteinterceptor = ConcreteInterceptor2()
         dispatcher = Dispatcher2()
         dispatcher.registerInterceptors(concreteinterceptor)
         concreteframework = ConcreteFramework2()
-        concreteframework.processtransaction(card_number)
+        concreteframework.processtransaction(cardNumber)
         return concreteframework.notifyDispatcher()
 
     @app.route('/processFoodDonation',methods = ['POST','GET'])  #RaghuParna
     def processFoodDonation():
         if request.method == "POST":
-            food_item = request.form['item']
+            foodItem = request.form['item']
             quantity = request.form['quantity']
             location = request.form['location']
             mode = request.form['mode_']
         db = DataBase()
-        db.donateFoodDetails(food_item,quantity,location,mode)
-        a = "success.html"
-        return render_template(a)
+        db.donateFoodDetails(foodItem,quantity,location,mode)
+        return render_template("success.html")
     
     @app.route('/processPartyLeftover', methods = ['POST','GET']) #Tushar
     def processPartyLeftover():
@@ -162,16 +161,16 @@ class MoneyDonation():
         payment = Payments()
 
         # Create Commands
-        pay_via_credit = CreditCardCommand(payment)
-        pay_via_net_banking = NetBankingCommand(payment)
+        payViaCredit = CreditCardCommand(payment)
+        payViaNetBanking = NetBankingCommand(payment)
 
         # Register the commands with the invoker
-        money_donation = Money_Donation()
-        moneyDonation.register("Credit/Debit", pay_via_credit)
-        moneyDonation.register("Netbanking", pay_via_net_banking)
+        moneyDonation = Money_Donation()
+        moneyDonation.register("Credit/Debit", payViaCredit)
+        moneyDonation.register("Netbanking", payViaNetBanking)
 
         # Execute the commands that are registered on the Invoker
-        return money_donation.execute(payment_method)
+        return moneyDonation.execute(payment_method)
     
     @app.route('/completeMoneyDonation',methods = ['POST','GET'])
     def completeMoneyDonation():

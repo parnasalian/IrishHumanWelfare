@@ -162,16 +162,16 @@ class MoneyDonation():
         payment = Payments()
 
         # Create Commands
-        pay_via_credit = CreditCardCommand(payment)
-        pay_via_net_banking = NetBankingCommand(payment)
+        payViaCredit = CreditCardCommand(payment)
+        payViaNetBanking = NetBankingCommand(payment)
 
         # Register the commands with the invoker
-        money_donation = Money_Donation()
-        moneyDonation.register("Credit/Debit", pay_via_credit)
-        moneyDonation.register("Netbanking", pay_via_net_banking)
+        moneyDonation = Money_Donation()
+        moneyDonation.register("Credit/Debit", payViaCredit)
+        moneyDonation.register("Netbanking", payViaNetBanking)
 
         # Execute the commands that are registered on the Invoker
-        return money_donation.execute(payment_method)
+        return moneyDonation.execute(payment_method)
     
     @app.route('/completeMoneyDonation',methods = ['POST','GET'])
     def completeMoneyDonation():
