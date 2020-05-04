@@ -19,11 +19,11 @@ dbcon=DataBase.dbconn()
 
 class Login():
     @app.route('/login',methods = ['POST','GET'])
-    def login():
+    def login(self):
         return render_template("login.html")
 
-    @app.route("/back",methods = ['POST'])
-    def back():
+    @app.route("/back>",methods = ['POST'])
+    def back(self):
         donationsDictionary = {}
         db = DataBase()
         donations_dictionary = db.retrieveDonations()

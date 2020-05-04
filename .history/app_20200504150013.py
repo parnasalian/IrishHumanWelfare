@@ -22,7 +22,7 @@ class Login():
     def login():
         return render_template("login.html")
 
-    @app.route("/back",methods = ['POST'])
+    @app.route("/back>",methods = ['POST'])
     def back():
         donationsDictionary = {}
         db = DataBase()
