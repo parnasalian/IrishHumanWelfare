@@ -53,7 +53,6 @@ class ConcreteInterceptor(IInterceptor):
         logger.addHandler(ch)
 
         logger.info('User has logged'+obj)
-        return obj
 
 
 class Dispatcher:

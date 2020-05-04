@@ -85,5 +85,6 @@ class TestDonation(unittest.TestCase):
         db=d.getFoodItems()
         self.assertEqual(db,list)
 
-
+if __name__ == "__main__":
+    unittest.main()
 
