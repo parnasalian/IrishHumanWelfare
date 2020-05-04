@@ -34,6 +34,7 @@ class getMode(getCategory,Filter):
     def process(self,message):
         # location = getLocation()
         self.testList.append(message.mode)
+        print("Finalllll",self.testList)
         db = DataBase()
         db.leftoverDetailsToDb(self.testList)
         pass

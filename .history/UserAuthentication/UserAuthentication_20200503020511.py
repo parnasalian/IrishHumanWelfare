@@ -7,9 +7,9 @@ class EventProcessor(object):
     def __init__(self):
         self.db = DataBase()
     def login(self,username_form,password_form):
-        donations_dictionary = {}  
+        donationsDictionary = {}  
         user_dictionary = {} 
-        donations_dictionary = self.db.retrieveDonations()       #gets list of donations options from the database
+        donationsDictionary = self.db.retrieveDonations()       #gets list of donations options from the database
         user_dictionary = self.db.getPasswordForLogin(username_form) #gets user details from the db  
         if user_dictionary['password']  == password_form:
             session['username'] = user_dictionary['user_name']
@@ -23,7 +23,7 @@ class EventProcessor(object):
             cf = ConcreteFramework()
             cf.event(user_dictionary['user_name'])
             print("Dictionary",donationsDictionary)
-            return render_template("index.html",donations_dictionary = donations_dictionary)     
+            return render_template("index.html",donationsDictionary = donationsDictionary)     
         else:
             return render_template("login.html")  
 
