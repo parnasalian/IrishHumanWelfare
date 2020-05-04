@@ -42,7 +42,7 @@ class Login():
         session.pop("username", None)
         return redirect(url_for("login"))
         
-class Register():
+class Register:
     @app.route("/register") 
     def register():
         return render_template("register.html")
@@ -65,7 +65,7 @@ class Register():
         
         
   
-class ChooseDonation():
+class ChooseDonation:
     @app.route('/get_donations', methods = ['POST','GET'])
     def get_donations():
         if request.method == "POST":
@@ -77,7 +77,7 @@ class ChooseDonation():
         don = donation()
         return don.get_donation()
 
-class FoodDonation():
+class FoodDonation:
     @app.route('/get_foodDonation_type', methods = ['POST','GET'])
     def get_foodDonation_type():
         if request.method == "POST":
@@ -137,7 +137,7 @@ class FoodDonation():
         leftovers.mode(mode)
         return render_template("success.html")
 
-class ClothesDonation():
+class ClothesDonation:
     @app.route("/processClothesDonation",methods = ['POST','GET'])
     def processClothesDonation():
         if request.method == "POST":
@@ -148,7 +148,7 @@ class ClothesDonation():
         db.donateClothesDetails(location,category,mode)
         return render_template("success.html")
 
-class MoneyDonation():
+class MoneyDonation:
     @app.route('/processMoneyDonation', methods = ['POST','GET'])
     def processMoneyDonation():
         if request.method == "POST":
@@ -177,7 +177,7 @@ class MoneyDonation():
         return render_template('success.html')
     
   
-class HomePage():
+class HomePage:
     @app.route("/index", methods = ['POST','GET'])
     def indexPage():
         return render_template("index.html")
