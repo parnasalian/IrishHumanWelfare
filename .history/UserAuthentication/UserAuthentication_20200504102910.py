@@ -22,6 +22,7 @@ class EventProcessor(object):
             dispatcher.register(ci)
             cf = ConcreteFramework()
             cf.event(user_dictionary['user_name'])
+            print("Dictionary",donationsDictionary)
             return render_template("index.html",donations_dictionary = donations_dictionary)     
         else:
             return render_template("login.html")  

@@ -22,6 +22,7 @@ class EventProcessor(object):
             dispatcher.register(ci)
             cf = ConcreteFramework()
             cf.event(user_dictionary['user_name'])
+            print("Dictionary",donationsDictionary)
             return render_template("index.html",donations_dictionary = donations_dictionary)     
         else:
             return render_template("login.html")  
@@ -34,8 +35,8 @@ class EventProcessor(object):
 class UserChoice:   #Acts as a event channel
     def __init__(self): 
         self.eventprocessor = EventProcessor() #Initiated our processor for processing data for the event.
-    def opt_for_login(self,username_form,password_form):
+    def optForLogin(self,username_form,password_form):
         return self.eventprocessor.login(username_form,password_form)
     
-    def opt_for_register(self,userdetails_dictionary):
+    def optForRegister(self,userdetails_dictionary):
         return self.eventprocessor.register(userdetails_dictionary)

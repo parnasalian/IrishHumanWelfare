@@ -26,8 +26,8 @@ class Login:
     def back():
         donationsDictionary = {}
         db = DataBase()
-        donations_dictionary = db.retrieveDonations()
-        return render_template("index.html",donations_dictionary = donations_dictionary)
+        donationsDictionary = db.retrieveDonations()
+        return render_template("index.html",donationsDictionary = donationsDictionary)
     
     @app.route("/processLogin",methods = ['POST','GET'])    #Event producer
     def processLogin():
