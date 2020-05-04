@@ -1,4 +1,5 @@
 from flask import Flask, session, render_template, request, session, g, redirect, url_for
+from flask.ext.classy import FlaskView,route
 import os, random
 import mysql.connector
 from database.dbconn import Database_connection
@@ -17,8 +18,8 @@ app = Flask(__name__)
 dbcon=DataBase.dbconn()
 
 
-class Login():
-    @app.route('/login/<self>',methods = ['POST','GET'])
+class Login(FlaskView):
+    @route("/login",methods = ['POST','GET'])
     def login(self):
         return render_template("login.html")
 

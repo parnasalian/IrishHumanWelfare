@@ -17,8 +17,8 @@ app = Flask(__name__)
 dbcon=DataBase.dbconn()
 
 
-class Login():
-    @app.route('/login/<self>',methods = ['POST','GET'])
+class Login(object):
+    @app.route("/login",methods = ['POST','GET'])
     def login(self):
         return render_template("login.html")
 
