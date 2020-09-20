@@ -20,6 +20,7 @@ dbcon=DataBase.dbconn()
 class Login():
     @app.route('/login',methods = ['POST','GET'])
     def login(self):
+        mn = []
         return render_template("login.html")
 
     @app.route("/back",methods = ['POST'])
